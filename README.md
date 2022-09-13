@@ -134,11 +134,13 @@ One pitcher notorious for dominating same sided hitters was the lefty Randy John
 For now we will use accuracy as our main metric, while also looking at f1, roc_auc_score, recall and precision. For the latter measures, I felt a weighted average would be more informative than a micro or macro average. This isn't based on any strong backing so maybe this will be changed in the future. Another note is that due to the nature of the project, we don't have an particular need to worry about false positives or false negatives more than one another, the way we would for something involving medicine or other higher stakes scenarios. 
 
 ### Dummy Classifier
+*Accuracy: 42.6%*
 Lets start by creating a dummy classifier set to always predict the most frequent classification (4 seam fastball, labeled FF, which occurs 42.5% of the time).
 
 ![dumbcm.png](images/dumbcm.png)
 
 ### Logistic Regression Classifier
+*Accuracy: 41.7 %*
 ![lrcm.png](images/lrcm.png)
 
 ### Decision Tree Classifier
