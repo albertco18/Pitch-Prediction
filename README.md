@@ -57,7 +57,7 @@ It should be noted that one could also simplify this problem by only labeling fa
 Our main focus was to gain a better idea of the distribution of the different pitch types present in our target feature data.  It was immediately clear that the four-seam fastball (FF) was by far the most common pitch thrown. The full key for what pitch each code represents is availible at the end of the notebook. 
 
 
-![3eda-top7pitches.png](attachment:3eda-top7pitches.png) 
+![3eda-top7pitches.png](images/3eda-top7pitches.png) 
  
 
     FF (Four Seam Fastball):    9201
@@ -81,7 +81,7 @@ We wanted to gain a visual perspective of how this distribution changed dependin
 
 One can see that in counts favoring the pitcher (0 balls 2 strikes, 1 ball 2 strikes etc), it is more common to see pitchers throw a more diverse selection of pitches (sliders, curveballs etc). With counts favoring the hitter (2+ balls, 0 strikes etc), pitchers throw the fastball more often to avoid walking batters (throwing 4 balls which puts the hitter on first base) as it is easier to control.
 
-![BallStrike.png](attachment:BallStrike.png)
+![BallStrike.png](images/BallStrike.png)
 
 
 ###  Baserunners & Outs 
@@ -93,7 +93,7 @@ Below are the distributions of pitches for each of the 8 runners-on-base scenari
 
 
 
-![runnersFull.png](attachment:runnersFull.png)
+![runnersFull.png](images/runnersFull.png)
 
 
 ### Pitches by Inning
@@ -109,7 +109,7 @@ Another (more even niche idea?) is that the way baseball is currently played and
 
 
 
-![3eda-innings.png](attachment:3eda-innings.png)
+![3eda-innings.png](images/3eda-innings.png)
 
 ### Right or Left Handed?
 
@@ -128,42 +128,45 @@ One pitcher notorious for dominating same sided hitters was the lefty Randy John
 
 
 
-![fullHAND.png](attachment:fullHAND.png)
+![fullHAND.png](images/fullHAND.png)
 
 # Modeling
 For now we will use accuracy as our main metric, while also looking at f1, roc_auc_score, recall and precision. For the latter measures, I felt a weighted average would be more informative than a micro or macro average. This isn't based on any strong backing so maybe this will be changed in the future. Another note is that due to the nature of the project, we don't have an particular need to worry about false positives or false negatives more than one another, the way we would for something involving medicine or other higher stakes scenarios. 
+Lets start by creating a dummy classifier set to always predict the most frequent classification (4 seam fastball).
 
 ### Dummy Classifier
-Lets start by creating a dummy classifier set to always predict the most frequent classification (4 seam fastball, labeled FF, which occurs 42.5% of the time).
+*Accuracy: 42.6%*
 
-![dumbcm.png](attachment:dumbcm.png)
+![dumbcm.png](images/dumbcm.png)
 
 ### Logistic Regression Classifier
-![lrcm.png](attachment:lrcm.png)
+*Accuracy: 41.7 %*
+
+![lrcm.png](images/lrcm.png)
 
 ### Decision Tree Classifier
 *Accuracy: 32.7%*
 
-![dtcm.png](attachment:dtcm.png)
+![dtcm.png](images/dtcm.png)
 
 ### Random Forest Classifier
 *Accuracy: 36.4%*
 
-![rfcm.png](attachment:rfcm.png)
+![rfcm.png](images/rfcm.png)
 
 The 3 models on default parameter settings have fairly similar accuracy scores, however their confusion matrix shows that they arrived at that score differently. The Logistic Regression model arrived at a score very similar to that of the dummy classifier (set to predict the most_common label), by overwhelmingly predicting the most common label. The dt and rf models both showed a much more balanced set of predictions but with lower accuracy scores.
 
 ### Gradient Boosting Classifier
 *Accuracy: 43.7%*
 
-![gb-cm-only.png](attachment:gb-cm-only.png)
+![gb-cm-only.png](images/gb-cm-only.png)
 
 # Metrics
 
 > Metrics used weighted averages
 
 
-![metricsREP.png](attachment:metricsREP.png)
+![metricsREP.png](images/metricsREP.png)
 
 ### Remarks on Model Performance
 
@@ -183,7 +186,7 @@ Another notable difference in the performance of the various classifiers was the
 
 At this point, we looked to improve our model using sampling methods (SMOTE and undersampling) to train our model on a more evenly distributed set of data. 
 
-![smote.png](attachment:smote.png)
+![smote.png](images/smote.png)
 
 
 Ultimately, neither stratgey yielded success, with all attempts to change the sampling actually decreasing model performance, and hyperparameter tuning making a negligible difference on predicting our test set. Because none of the initial models showed promising metrics, in a practical setting it would probably be more wise to consider changing the scenario/question being asked in the first place.
