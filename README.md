@@ -213,9 +213,6 @@ Ideally, it would make more sense to build a model for each individual pitcher, 
 
 
 
-### ( Real Conclusion )
-
-*Teams should go back to using the trashcan, because I can't help them.*
 
 
 Thank you for reading!
